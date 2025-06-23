@@ -3,97 +3,360 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gas FAQs</title>
+    <title>KATI CRM WEBCHAT - Test Page</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
-            background-color: #f4f4f4;
+            overflow-x: hidden;
         }
-        .faq-container {
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            max-width: 1200px;
+            width: 100%;
+            padding: 60px 40px;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
         }
-        .faq-item {
-            margin-bottom: 20px;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .faq-question {
-            font-weight: bold;
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .logo {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(118, 75, 162, 0.4);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #6b7280;
+            font-weight: 300;
+            margin-bottom: 8px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.5; }
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+
+        .feature-description {
+            color: #6b7280;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .test-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .test-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .test-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .test-description {
+            color: #6b7280;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="faq-container">
-        <h2>Frequently Asked Questions About Gas</h2>
-        
-        <div class="faq-item">
-            <p class="faq-question">1. What is natural gas and how is it formed?</p>
-            <p>Natural gas is a fossil fuel primarily composed of methane, formed from the decomposition of organic material over millions of years under heat and pressure.</p>
+    <div class="container">
+        <div class="header">
+            <h1 class="logo">KATI CRM</h1>
+            <p class="subtitle">Advanced Customer Relationship Management</p>
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                WEBCHAT Test Environment
+            </div>
         </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">2. Is natural gas renewable or non-renewable?</p>
-            <p>Natural gas is considered a non-renewable resource because it takes millions of years to form and cannot be replenished on a human timescale.</p>
+
+        <div class="main-content">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">Real-time Messaging</h3>
+                <p class="feature-description">Experience seamless communication with our advanced webchat system. Built for speed, reliability, and exceptional user experience across all devices and platforms.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">CRM Integration</h3>
+                <p class="feature-description">Fully integrated with KATI CRM platform, providing comprehensive customer insights, conversation history, and automated workflow management.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Analytics Dashboard</h3>
+                <p class="feature-description">Monitor chat performance, customer satisfaction metrics, and team productivity with our comprehensive analytics and reporting tools.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Enterprise Security</h3>
+                <p class="feature-description">Bank-level encryption, secure data handling, and compliance with international privacy standards ensure your conversations remain protected.</p>
+            </div>
         </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">3. What are the main differences between natural gas, propane, and butane?</p>
-            <p>Natural gas is primarily methane and is supplied via pipelines. Propane and butane are byproducts of natural gas processing and petroleum refining, stored as liquids under pressure.</p>
+
+        <div class="test-section">
+            <h2 class="test-title">Welcome to KATI CRM WEBCHAT</h2>
+            <p class="test-description">This is your testing environment for the KATI CRM webchat system. Explore the features, test functionality, and experience the future of customer communication.</p>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="startTest()">
+                    🎯 Start Test Session
+                </button>
+                <button class="btn btn-secondary" onclick="viewDemo()">
+                    👀 View Demo
+                </button>
+            </div>
         </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">4. How can I detect a gas leak?</p>
-            <p>Gas leaks can be identified by a strong sulfur-like odor, a hissing sound near gas appliances, dead plants near gas lines, or an unusually high gas bill.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">5. What should I do if I suspect a gas leak?</p>
-            <p>Avoid using electrical switches, do not ignite flames, evacuate immediately, and contact emergency services or your gas provider.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">6. What are the advantages and disadvantages of using natural gas?</p>
-            <p>Advantages include efficiency, cost-effectiveness, and lower emissions than coal. Disadvantages include methane leakage, environmental concerns, and finite availability.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">7. How does the extraction of natural gas impact the environment?</p>
-            <p>Extraction methods such as hydraulic fracturing (fracking) can cause groundwater contamination, seismic activity, and habitat destruction.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">8. Can natural gas be used as a primary source of electricity?</p>
-            <p>Yes, natural gas power plants generate electricity by burning gas to produce steam that drives turbines, making it a widely used energy source.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">9. What safety measures should be taken when using gas appliances?</p>
-            <p>Ensure proper ventilation, install carbon monoxide detectors, regularly inspect appliances for leaks, and follow manufacturer guidelines for usage.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">10. How does liquefied natural gas (LNG) differ from compressed natural gas (CNG)?</p>
-            <p>LNG is natural gas cooled to a liquid state for easier storage and transport, while CNG is stored under high pressure for use in vehicles and industrial applications.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">11. What role does natural gas play in global energy production?</p>
-            <p>Natural gas accounts for a significant portion of global energy consumption, used for electricity generation, industrial processes, and residential heating.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">12. How does natural gas compare to renewable energy sources?</p>
-            <p>Natural gas is more reliable but emits greenhouse gases, whereas renewable sources like wind and solar are cleaner but depend on weather conditions.</p>
-        </div>
-        
-        <div class="faq-item">
-            <p class="faq-question">13. What are the geopolitical implications of natural gas production?</p>
-            <p>Countries with large natural gas reserves influence global markets, and pipeline dependencies can create political tensions between supplier and consumer nations.</p>
+
+        <div class="footer">
+            <p>© 2025 KATI CRM. Advanced webchat testing platform - Version 2.1.0</p>
         </div>
     </div>
+
+    <script>
+        
+    </script>
 </body>
 </html>
